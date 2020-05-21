@@ -33,8 +33,8 @@ public class InitialPageCarSteps extends PageSteps {
 
     @When("The user search a car between two days")
     public void theUserSearchACarBetweenTwoDays(DataTable dataTable) throws InterruptedException, ClassNotFoundException, IOException {
-        List<DataSearch> dataSearchList = DataSearchFromDataTable.getSearchFromDataTable(dataTable);
         try {
+            List<DataSearch> dataSearchList = DataSearchFromDataTable.getSearchFromDataTable(dataTable);
             Injector._page(TravelHomePage.class).clickCarsLink();
             ExtentReportsConfig.ScreenShot(Injector._page(TravelHomePage.class).getDriver());
             Injector._page(TravelHomePage.class).FullSearchForm(dataSearchList.get(0));
@@ -48,8 +48,8 @@ public class InitialPageCarSteps extends PageSteps {
 
     @Then("The search page list the available cars in those days.")
     public void theSearchPageListTheAvailableCarsInThoseDays() throws ClassNotFoundException, IOException {
-        Assert.assertTrue(Injector._page(TravelSearchResultPage.class).FormResultsIsVisible());
         try {
+            Assert.assertTrue(Injector._page(TravelSearchResultPage.class).FormResultsIsVisible());
             ExtentReportsConfig.CreateNode("Then", "The search page list the available cars in those days.").pass("Passed");
             ExtentReportsConfig.ScreenShot(Injector._page(TravelSearchResultPage.class).getDriver());
         } catch (Exception e) {
@@ -71,9 +71,8 @@ public class InitialPageCarSteps extends PageSteps {
 
     @And("The user complete the booking car form")
     public void theUserCompleteTheBookingCarForm() throws Exception {
-
-        List<DataDriver> dataDriverList = DataFromJSON.GetFromFile("C:\\Users\\Usuario\\IdeaProjects\\Lippia-web-sample-project-master\\src\\main\\java\\com\\crowdar\\examples\\Utils\\Data.json");
         try {
+            List<DataDriver> dataDriverList = DataFromJSON.GetFromFile("C:\\Users\\Usuario\\IdeaProjects\\Lippia-web-sample-project-master\\src\\main\\java\\com\\crowdar\\examples\\Utils\\Data.json");
             Injector._page(DriverDetailsPage.class).FullForm(dataDriverList.get(0));
             ExtentReportsConfig.CreateNode("And", "The user complete the booking car form").pass("Passed");
         } catch (Exception e) {
@@ -84,8 +83,8 @@ public class InitialPageCarSteps extends PageSteps {
 
     @And("The user complete the payment form <payment data provided below>")
     public void theUserCompleteThePaymentFormPaymentDataProvidedBelow(DataTable dataTable) throws InterruptedException, ClassNotFoundException, IOException {
-        List<DataPayment> dataPaymentList = DataFromDataTable.GetFromDataTable(dataTable);
         try {
+            List<DataPayment> dataPaymentList = DataFromDataTable.GetFromDataTable(dataTable);
             Injector._page(PaymentPage.class).FullPaymentForm(dataPaymentList.get(0));
             ExtentReportsConfig.CreateNode("And", "The user complete the payment form <payment data provided below>").pass("Passed");
         } catch (Exception e) {
@@ -96,8 +95,8 @@ public class InitialPageCarSteps extends PageSteps {
 
     @Then("a reservation number is provided")
     public void aReservationNumberIsProvided() throws IOException, ClassNotFoundException {
-        Assert.assertTrue(Injector._page(PaymentPage.class).IsReservationConcrete());
         try {
+            Assert.assertTrue(Injector._page(PaymentPage.class).IsReservationConcrete());
             ExtentReportsConfig.CreateNode("Then", "a reservation number is provided").pass("Passed");
             ExtentReportsConfig.ScreenShot(Injector._page(PaymentPage.class).getDriver());
         } catch (Exception e) {
