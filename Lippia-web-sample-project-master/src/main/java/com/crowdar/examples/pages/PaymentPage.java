@@ -57,8 +57,16 @@ public class PaymentPage extends PageBaseTravels {
     }
 
     public boolean IsReservationConcrete() {
-        super.getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TT_RESERVATIONCONFIRM_XPTH)));
-        return true;
+        try {
+            if (super.isElementVisible(By.xpath(TT_RESERVATIONCONFIRM_XPTH)))
+                return true;
+            else
+                return false;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
     }
 
     //METODO UTILIZADO CUANDO NO SE CONCRETABA LA RESERVA

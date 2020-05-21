@@ -14,6 +14,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
+import org.jsoup.helper.Validate;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class InitialPageCarSteps extends PageSteps {
         try {
             Injector._page(TravelHomePage.class).go();
             ExtentReportsConfig.CreateNode("Given", "The user is in Cars page").pass("Passed");
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("Given", "The user is in Cars page").fail("Failed");
         }
     }
@@ -40,7 +41,7 @@ public class InitialPageCarSteps extends PageSteps {
             Injector._page(TravelHomePage.class).FullSearchForm(dataSearchList.get(0));
             Injector._page(TravelHomePage.class).clickSearchBtn();
             ExtentReportsConfig.CreateNode("When", "The user search a car between two days").pass("Passed");
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("When", "The user search a car between two days").fail("Failed");
         }
     }
@@ -52,7 +53,7 @@ public class InitialPageCarSteps extends PageSteps {
             Assert.assertTrue(Injector._page(TravelSearchResultPage.class).FormResultsIsVisible());
             ExtentReportsConfig.CreateNode("Then", "The search page list the available cars in those days.").pass("Passed");
             ExtentReportsConfig.ScreenShot(Injector._page(TravelSearchResultPage.class).getDriver());
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("Then", "The search page list the available cars in those days.").fail("Failed");
         }
     }
@@ -63,7 +64,7 @@ public class InitialPageCarSteps extends PageSteps {
         try {
             Injector._page(TravelSearchResultPage.class).SelectFirstCarOption();
             ExtentReportsConfig.CreateNode("And", "the user select the first result in the list").pass("Passed");
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("And", "the user select the first result in the list").fail("Failed");
         }
     }
@@ -75,7 +76,7 @@ public class InitialPageCarSteps extends PageSteps {
             List<DataDriver> dataDriverList = DataFromJSON.GetFromFile("C:\\Users\\Usuario\\IdeaProjects\\Lippia-web-sample-project-master\\src\\main\\java\\com\\crowdar\\examples\\Utils\\Data.json");
             Injector._page(DriverDetailsPage.class).FullForm(dataDriverList.get(0));
             ExtentReportsConfig.CreateNode("And", "The user complete the booking car form").pass("Passed");
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("And", "The user complete the booking car form").fail("Failed");
         }
     }
@@ -87,7 +88,7 @@ public class InitialPageCarSteps extends PageSteps {
             List<DataPayment> dataPaymentList = DataFromDataTable.GetFromDataTable(dataTable);
             Injector._page(PaymentPage.class).FullPaymentForm(dataPaymentList.get(0));
             ExtentReportsConfig.CreateNode("And", "The user complete the payment form <payment data provided below>").pass("Passed");
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("And", "The user complete the payment form <payment data provided below>").fail("Failed");
         }
     }
@@ -99,7 +100,7 @@ public class InitialPageCarSteps extends PageSteps {
             Assert.assertTrue(Injector._page(PaymentPage.class).IsReservationConcrete());
             ExtentReportsConfig.CreateNode("Then", "a reservation number is provided").pass("Passed");
             ExtentReportsConfig.ScreenShot(Injector._page(PaymentPage.class).getDriver());
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("Then", "a reservation number is provided").fail("Failed");
         }
     }

@@ -19,7 +19,7 @@ public class InitialPageSteps extends PageSteps {
         try {
             Injector._page(TravelHomePage.class).go();
             ExtentReportsConfig.CreateNode("Given", "The user is in home page").pass("Passed");
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("Given", "The user is in home page").fail("Failed");
         }
     }
@@ -29,7 +29,7 @@ public class InitialPageSteps extends PageSteps {
         try {
             Injector._page(TravelHomePage.class).clickAboutUsLink();
             ExtentReportsConfig.CreateNode("When", "The user go to {string} page").pass("Passed");
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("When", "The user go to {string} page").fail("Failed");
         }
 
@@ -41,7 +41,7 @@ public class InitialPageSteps extends PageSteps {
             Assert.assertEquals(Injector._page(TravelAboutUsResultPage.class).GetLnkAboutUsText(), aboutUs);
             ExtentReportsConfig.CreateNode("Then", "The {string} page is displayed").pass("Passed");
             ExtentReportsConfig.features.log(Status.PASS, "Test passed");
-        } catch (Exception e) {
+        } catch (Throwable t) {
             ExtentReportsConfig.CreateNode("Then", "The {string} page is displayed").fail("Failed");
             ExtentReportsConfig.features.log(Status.FAIL, "Test failed");
 
